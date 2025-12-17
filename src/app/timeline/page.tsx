@@ -12,7 +12,7 @@ const MILESTONES = [
 export default function TimelinePage() {
   return (
     <main className="relative min-h-screen bg-[#030008] text-white p-20">
-      <div className="absolute inset-0 z-0"><FloatingLines colors={['#ff007f', '#7000ff']} /></div>
+      <div className="absolute inset-0 z-0"><FloatingLines/></div>
       
       <div className="relative z-10 max-w-4xl mx-auto">
         <Badge className="mb-8 bg-pink-500/20 text-pink-500 border-pink-500/40 font-mono">CHAPTER_02: THE_TIMELINE</Badge>

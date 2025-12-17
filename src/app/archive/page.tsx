@@ -40,7 +40,7 @@ export default function ArchivePage() {
       
       {/* BACKGROUND */}
       <div className="absolute inset-0 z-0">
-        <FloatingLines colors={['#ff007f', '#7000ff']} />
+        <FloatingLines/>
         <div className="absolute inset-0 bg-black/70 pointer-events-none" />
       </div>
 
