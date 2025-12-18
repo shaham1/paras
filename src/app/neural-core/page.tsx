@@ -21,7 +21,6 @@ const DIRECTORIES = [
     id: 'DIR_02', 
     name: 'paras_evolution', 
     files: [
-      { name: 'inside_joke_01.jpg', url: '/archive/joke1.jpg', type: 'IMAGE' },
       { name: 'oh.jpeg', url: '/archive/whateven.jpeg', type: 'IMAGE' },
       { name: 'archive/lowkey.jpeg', url: '', type: 'TEXT', content: 'A reminder that you probably failed your mid-terms.' },
       { name: 'Lowkey_ate_for_once.pdf', url: '/archive/lowkey.jpeg', type: 'IMAGE'},
