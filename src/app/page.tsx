@@ -120,7 +120,7 @@ export default function TerminalGate() {
             
             <form onSubmit={handleSubmit} className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
-                <span className="text-green-400 font-bold font-mono">paras@vault:~$</span>
+                <span className="text-purple-400 font-bold font-mono">paras@vault:~$</span>
                 <input 
                   autoFocus 
                   type="text" 
