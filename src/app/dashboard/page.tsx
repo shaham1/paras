@@ -83,9 +83,10 @@ export default function Dashboard() {
             {[
               { label: 'Reality', href: '/neural-core', id: '01' },
               { label: 'Vault', href: '/vault', id: '02' },
-              { label: 'Signals', href: '/dashboard/messages', id: '03' },
-              { label: 'Coupons', href: '/coupons', id: '04' },
-              { label: 'Goodbye', href: '/matrix', id: '05' }
+              // { label: 'IDEK?', href: '/frequency', id: '03' },
+              { label: 'Signals', href: '/dashboard/messages', id: '04' },
+              { label: 'Coupons', href: '/coupons', id: '05' },
+              { label: 'Goodbye', href: '/matrix', id: '06' }
             ].map((item) => (
               <Link key={item.id} href={item.href} className="border border-white/5 bg-white/[0.03] p-6 rounded-2xl hover:border-pink-500/40 transition-all group backdrop-blur-md">
                 <p className="text-[8px] font-mono text-gray-600 mb-2 italic">ACCESS_PT_{item.id}</p>

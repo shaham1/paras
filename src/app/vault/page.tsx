@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-
+import Threads from '@/components/Threads';
 const WRAPPED_SLIDES = [
   {
     id: "intro",
@@ -139,6 +139,7 @@ export default function SpotifyWrapped() {
 
       {/* BACKGROUND DECORATION */}
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
+        {/* <Threads/> */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] border border-white/5 rounded-full animate-[spin_20s_linear_infinite]" />
       </div>
 
