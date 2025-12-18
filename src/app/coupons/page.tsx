@@ -9,10 +9,11 @@ import { Button } from '@/components/ui/button';
 
 // --- DATA ---
 const COUPONS = [
-  { id: 1, title: "Gourmet Dinner", detail: "I'll cook your favorite 3-course meal.", icon: "🍳" },
-  { id: 2, title: "Weekend Getaway", detail: "A surprise trip to a destination of your choice.", icon: "✈️" },
-  { id: 3, title: "Yes Day", detail: "I have to say YES to everything you ask for 24h.", icon: "✅" },
-  { id: 4, title: "Coffee Subscription", detail: "I'll be your personal barista for a whole month.", icon: "☕" },
+  { id: 1, title: "CupCakes", detail: "message me ur favourite flavor and cafe thanks", icon: "🍳" },
+  { id: 2, title: "Weekend Getaway", detail: "A surprise trip to a destination of your choice. (hell no go away)", icon: "✈️" },
+  { id: 3, title: "Yes Day", detail: "You can choose donuts too ion rly know what this is for.", icon: "✅" },
+  { id: 4, title: "A Dare", detail: "Idk come up with something, and ur getting cupcakes regardless.", icon: "☕" },
+  { id: 5, title: "Cookies?", detail: "Lowkey just message me, you'll get it when i'm back in pak promise :) ", icon: "☕" },
 ];
 
 export default function CouponsPage() {
