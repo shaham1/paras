@@ -78,7 +78,7 @@ export default function TerminalGate() {
     <main className="relative h-screen w-full bg-[#050505] flex items-center justify-center p-4 overflow-hidden">
       
       {/* BACKGROUND: FAULTY TERMINAL EFFECT */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 z-0 opacity-70 pointer-events-none">
         <FaultyLetters 
           text="ACCESS RESTRICTED IDENTIFY SUBJECT PARAS 19.0 ENCRYPTION ACTIVE" 
           payload="PARAS_ARCHIVE_NODE_1228"
@@ -89,7 +89,7 @@ export default function TerminalGate() {
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 w-full max-w-2xl rounded-xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl bg-black/70"
+        className="relative z-15 w-full max-w-5xl rounded-xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl bg-black/90"
       >
         {/* TITLE BAR */}
         <div className="bg-[#1a1a1a] px-4 py-2 flex items-center justify-between border-b border-white/5">
@@ -105,7 +105,7 @@ export default function TerminalGate() {
         </div>
 
         {/* TERMINAL BODY */}
-        <div className="p-8 font-mono text-pink-500 h-[400px] flex flex-col">
+        <div className="p-8 font-mono text-pink-500 h-[600px] flex flex-col">
           {/* LOG SCROLL AREA */}
           <div className="flex-grow overflow-y-auto scrollbar-hide space-y-2 text-sm opacity-80">
             {logs.map((log, i) => (
