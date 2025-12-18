@@ -12,28 +12,27 @@ const DIRECTORIES = [
     id: 'DIR_01', 
     name: 'core_memories', 
     files: [
+      { name: 'first_transmission.log', url: '', type: 'TEXT', content: 'Entry 001: The start of the Paras Protocol.' },
       { name: 'coffee_incident.jpg', url: '/archive/coffee.jpeg', type: 'IMAGE' },
-      { name: 'late_night_pdx.png', url: '/archive/pdx.png', type: 'IMAGE' },
-      { name: 'first_transmission.log', url: '', type: 'TEXT', content: 'Entry 001: The start of the Paras Protocol.' }
+      { name: 'YOUR_FIRST_CAR!!.png', url: '/archive/shadow.jpeg', type: 'IMAGE' },
     ] 
   },
   { 
     id: 'DIR_02', 
-    name: 'intellectual_property', 
+    name: 'paras_evolution', 
     files: [
       { name: 'inside_joke_01.jpg', url: '/archive/joke1.jpg', type: 'IMAGE' },
-      { name: 'oh.pdf', url: '/archieve/whateven.jpeg', type: 'TEXT', content: 'i asked for good pictures btw.' },
-      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
-      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
-      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
-      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
-      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
-      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' }
+      { name: 'oh.jpeg', url: '/archive/whateven.jpeg', type: 'IMAGE' },
+      { name: 'archive/lowkey.jpeg', url: '', type: 'TEXT', content: 'A reminder that you probably failed your mid-terms.' },
+      { name: 'Lowkey_ate_for_once.pdf', url: '/archive/lowkey.jpeg', type: 'IMAGE'},
+      { name: 'CHEATER?!?!?!?!?!.pdf', url: '/archive/shrek.jpeg', type: 'IMAGE'},
+      { name: 'my_dress_up_darling.pdf', url: '/archive/shrek.jpeg', type: 'IMAGE'},
+      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: "just pictures that i liked"},
     ] 
   },
   { 
     id: 'DIR_03', 
-    name: 'paras_evolution', 
+    name: 'intellectual_property', 
     files: [
       { name: 'v18_stable.jpg', url: '/archive/v18.jpg', type: 'IMAGE' },
       { name: 'v19_beta_test.jpg', url: '/archive/v19.jpg', type: 'IMAGE' }
