@@ -1,8 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// schema.prisma
 
 generator client {
   provider = "prisma-client-js"
@@ -11,4 +7,26 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Transmission {
+  id        String   @id @default(cuid())
+  sender    String   // Friend's Name
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Reward {
+  id         String    @id @default(cuid())
+  label      String    // e.g., "Gourmet Dinner"
+  isUnlocked Boolean   @default(false)
+  unlockedAt DateTime?
+}
+
+
+model SystemLog {
+  id        String   @id @default(cuid())
+  event     String   // e.g., "Protocol_Cleared"
+  timestamp DateTime @default(now())
 }

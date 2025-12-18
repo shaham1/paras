@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Badge } from "@/components/ui/badge";
 import FloatingLines from '@/components/FloatingLines';
-import InfiniteMenu from '@/components/InfiniteMenu'; // Ensure this is in your components folder
+import InfiniteMenu from '@/components/InfiniteMenu'; 
 
 // --- MEMORY DATA ---
 const ARCHIVE_ITEMS = [
