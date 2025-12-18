@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+// Note: Ensure you have the FaultyLetters component in your components folder
+import FaultyLetters from '@/components/FaultyLetters'; 
 
 const QUIZ_STEPS = [
   {
@@ -54,31 +56,75 @@ export default function TerminalGate() {
   };
 
   return (
-    <main className="h-screen w-full bg-black flex items-center justify-center p-6 font-mono text-pink-500">
-      <div className="w-full max-w-2xl space-y-6">
-        <div className="space-y-2 text-sm opacity-80 h-48 overflow-y-auto flex flex-col justify-end">
-          {logs.map((log, i) => (
-            <p key={i} className={log.startsWith('✓') ? "text-green-500" : log.startsWith('✗') ? "text-red-500" : ""}>{log}</p>
-          ))}
+    <main className="relative h-screen w-full bg-[#050505] flex items-center justify-center p-4 overflow-hidden">
+      
+      {/* REACT BITS: FAULTY TERMINAL BACKGROUND */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <FaultyLetters 
+          text="ACCESS DENIED ERROR 403 RESTRICTED DATA ENCRYPTION ACTIVE" 
+          payload="PARAS ARCHIVE 2025"
+        />
+      </div>
+
+      {/* LINUX TERMINAL WINDOW */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        className="relative z-10 w-full max-w-3xl rounded-lg overflow-hidden border border-white/10 shadow-2xl backdrop-blur-md bg-black/60"
+      >
+        {/* TERMINAL TITLE BAR (LINUX STYLE) */}
+        <div className="bg-[#1e1e1e] px-4 py-2 flex items-center justify-between border-b border-white/5">
+          <div className="flex gap-2">
+            <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+            <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+          </div>
+          <div className="text-[10px] font-mono text-gray-500 tracking-widest uppercase">
+            bash — paras@linux-pdx1: ~
+          </div>
+          <div className="w-12" /> {/* Spacer */}
         </div>
 
-        <motion.div key={step} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4 border-t border-pink-500/20 pt-6">
-          <p className="text-white text-lg">{QUIZ_STEPS[step].question}</p>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <span className="font-bold">GUEST@PARAS_VAULT:~$</span>
-              <input 
-                autoFocus 
-                type="text" 
-                value={inputValue} 
-                onChange={(e) => setInputValue(e.target.value)}
-                className="bg-transparent border-none outline-none text-white w-full uppercase caret-pink-500"
-              />
-            </div>
-            <p className="text-[10px] text-gray-600 uppercase tracking-widest">{QUIZ_STEPS[step].hint}</p>
-          </form>
-        </motion.div>
-      </div>
+        {/* TERMINAL BODY */}
+        <div className="p-8 font-mono text-pink-500 h-[450px] flex flex-col">
+          <div className="flex-grow overflow-y-auto scrollbar-hide space-y-2 text-sm opacity-90">
+            {logs.map((log, i) => (
+              <p key={i} className={
+                log.startsWith('✓') ? "text-green-400" : 
+                log.startsWith('✗') ? "text-red-400" : ""
+              }>
+                {log}
+              </p>
+            ))}
+          </div>
+
+          <div className="mt-6 border-t border-pink-500/20 pt-6">
+            <p className="text-white text-lg mb-4 leading-relaxed">
+              {QUIZ_STEPS[step].question}
+            </p>
+            
+            <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+              <div className="flex items-center gap-3">
+                <span className="font-bold text-purple-400">paras@archive:~$</span>
+                <input 
+                  autoFocus 
+                  type="text" 
+                  value={inputValue} 
+                  onChange={(e) => setInputValue(e.target.value)}
+                  className="bg-transparent border-none outline-none text-white w-full uppercase caret-pink-500"
+                  spellCheck={false}
+                />
+              </div>
+              <p className="text-[10px] text-gray-600 uppercase tracking-widest mt-2">
+                {QUIZ_STEPS[step].hint}
+              </p>
+            </form>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* SCANLINE EFFECT */}
+      <div className="pointer-events-none fixed inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_2px,3px_100%]" />
     </main>
   );
 }
