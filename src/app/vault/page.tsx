@@ -50,7 +50,7 @@ const WRAPPED_SLIDES = [
     id: "move",
     title: "THE_FINAL_REVOLUTION",
     subtitle: "107,000 KM/H",
-    image: "/next.svg", // Placeholder
+    image: "/archive/top.jpeg", // Placeholder
     color: "from-green-900/20 to-black",
     text: "A new city. One week before college. But the link never dropped. Happy 19th, Paras."
   }
@@ -116,7 +116,7 @@ export default function SpotifyWrapped() {
           className="relative z-10 w-full max-w-lg px-8 flex flex-col items-center text-center"
         >
           {/* IMAGE ELEMENT */}
-          <div className="relative w-64 h-64 mb-12 shadow-2xl">
+          <div className="relative w-100 h-100 mb-12 shadow-2xl">
             <Image 
               src={slide.image} 
               alt={slide.title} 
