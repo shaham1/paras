@@ -36,6 +36,7 @@ const DIRECTORIES = [
       { name: 'v12_stable.jpg', url: '/archive/flowers.png', type: 'IMAGE' },
       { name: 'v13_beta_test.jpg', url: '/archive/idek.png', type: 'IMAGE' },
       { name: 'v14_beta_test.jpg', url: '/archive/this.png', type: 'IMAGE' },
+      { name: 'v15_beta_test.jpg', url: '/archive/he.png', type: 'IMAGE' },
       { name: 'note.txt', url: '', type: 'TEXT', content: "blame preet for these"},
       { name: 'okay.jpg', url: '/archive/mesage.png', type: 'IMAGE' }
       { name: 'hard.jpg', url: '/archive/hard.png', type: 'IMAGE' }
