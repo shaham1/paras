@@ -33,8 +33,11 @@ const DIRECTORIES = [
     id: 'DIR_03', 
     name: 'intellectual_property', 
     files: [
-      { name: 'v18_stable.jpg', url: '/archive/v18.jpg', type: 'IMAGE' },
-      { name: 'v19_beta_test.jpg', url: '/archive/v19.jpg', type: 'IMAGE' }
+      { name: 'v12_stable.jpg', url: '/archive/flowers.png', type: 'IMAGE' },
+      { name: 'v13_beta_test.jpg', url: '/archive/idek.png', type: 'IMAGE' },
+      { name: 'v14_beta_test.jpg', url: '/archive/this.png', type: 'IMAGE' },
+      { name: 'note.txt', url: '', type: 'TEXT', content: "blame preet for these"},
+      { name: 'okay.jpg', url: '/archive/mesage.png', type: 'IMAGE' }
     ] 
   },
 ];
