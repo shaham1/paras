@@ -31,6 +31,7 @@ export default function MessagesPage() {
       {/* BACKGROUND EFFECTS */}
       <div className="absolute inset-0 z-0">
         <FloatingLines/>
+        
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.1),transparent_50%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px]" />
       </div>
