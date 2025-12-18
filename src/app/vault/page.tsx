@@ -74,7 +74,7 @@ export default function SpotifyWrapped() {
         setCurrentSlide(currentSlide + 1);
         setProgress(0);
       } else {
-        router.push('/dashboard/messages'); // Auto-leads to messages after wrapped
+        router.push('/coupons'); // Auto-leads to messages after wrapped
       }
     }, SLIDE_DURATION);
 

@@ -69,6 +69,7 @@ export default function SignOutPage() {
               <div className="space-y-2 text-gray-300 italic text-sm md:text-base leading-relaxed">
                 <p>"The archive is locked, but the journey continues."</p>
                 <p>Happy 19th Birthday. You're doing great.</p>
+                <p>We'll always love you.</p>
               </div>
               
               <motion.button
