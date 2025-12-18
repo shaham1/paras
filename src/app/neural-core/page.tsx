@@ -25,7 +25,7 @@ const DIRECTORIES = [
       { name: 'oh.jpeg', url: '/archive/whateven.jpeg', type: 'IMAGE' },
       { name: 'archive/lowkey.jpeg', url: '', type: 'TEXT', content: 'A reminder that you probably failed your mid-terms.' },
       { name: 'Lowkey_ate_for_once.pdf', url: '/archive/lowkey.jpeg', type: 'IMAGE'},
-      { name: 'CHEATER?!?!?!?!?!.pdf', url: '/archive/shrek.jpeg', type: 'IMAGE'},
+      { name: 'CHEATER?!?!?!?!?!.pdf', url: '/archive/image.png', type: 'IMAGE'},
       { name: 'my_dress_up_darling.pdf', url: '/archive/shrek.jpeg', type: 'IMAGE'},
       { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: "just pictures that i liked"},
     ] 
