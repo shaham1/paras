@@ -9,7 +9,7 @@ const WRAPPED_SLIDES = [
     id: "intro",
     title: "2024_RECAP",
     subtitle: "A journey through the archives.",
-    image: "/next.svg", // Placeholder
+    image: "/dreamworld.png", 
     color: "from-pink-900/20 to-black",
     text: "You traveled 17.8 Billion KM this year. But let's look at where it started."
   },
@@ -17,7 +17,7 @@ const WRAPPED_SLIDES = [
     id: "the-van",
     title: "THE_VAN_PROTOCOL",
     subtitle: "Grade 11 Commute",
-    image: "/vercel.svg", // Placeholder
+    image: "/me.png", 
     color: "from-purple-900/20 to-black",
     text: "It started with a route change. A obsession with Laiba. A back seat in a school van."
   },
@@ -25,15 +25,15 @@ const WRAPPED_SLIDES = [
     id: "the-shift",
     title: "THE_LAIBA_SCHISM",
     subtitle: "Side A vs Side B",
-    image: "/window.svg", // Placeholder
+    image: "/farewell.png", 
     color: "from-red-900/20 to-black",
-    text: "Lines were drawn. I was still better tho frfr. But then, the signals started changing."
+    text: "Lines were drawn. I was still better tho frfr. Farewell day, and we still weren't really friends."
   },
   {
     id: "trust",
-    title: "ROOT_ACCESS_GRANTED",
-    subtitle: "The Password Handover",
-    image: "/globe.svg", // Placeholder
+    title: "LAST_DAY_OF_SCHOOL",
+    subtitle: "You stuck around",
+    image: "/pras.png", 
     color: "from-blue-900/20 to-black",
     text: "It was her fault not mine (trust) :)."
   },
@@ -41,7 +41,7 @@ const WRAPPED_SLIDES = [
     id: "rants",
     title: "THE_RANT_CHANNELS",
     subtitle: "Unlimited Uptime",
-    image: "/file.svg", // Placeholder
+    image: "/file.svg", 
     color: "from-pink-600/20 to-black",
     text: "Hours spent on the phone. Late night rants. You became the primary listener."
   },

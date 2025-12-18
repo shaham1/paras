@@ -26,7 +26,7 @@ const DIRECTORIES = [
       { name: 'Lowkey_ate_for_once.pdf', url: '/archive/lowkey.jpeg', type: 'IMAGE'},
       { name: 'CHEATER?!?!?!?!?!.pdf', url: '/archive/shrek.jpeg', type: 'IMAGE'},
       { name: 'my_dress_up_darling.pdf', url: '/archive/image.png', type: 'IMAGE'},
-      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: "just pictures that i liked"},
+      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: "just pictures that i liked"}
     ] 
   },
   { 
@@ -38,10 +38,19 @@ const DIRECTORIES = [
       { name: 'v14_beta_test.jpg', url: '/archive/this.png', type: 'IMAGE' },
       { name: 'v15_beta_test.jpg', url: '/archive/he.png', type: 'IMAGE' },
       { name: 'note.txt', url: '', type: 'TEXT', content: "blame preet for these"},
-      { name: 'okay.jpg', url: '/archive/mesage.png', type: 'IMAGE' }
+      { name: 'okay.jpg', url: '/archive/mesage.png', type: 'IMAGE' },
       { name: 'hard.jpg', url: '/archive/hard.png', type: 'IMAGE' }
     ] 
   },
+  {
+    id: 'DIR_04',
+    name: 'subtle reminder',
+    files: [
+      {name: 'reminder.txt', url: '', type: "TEXT", content: "Subtle reminders that my waist will always be sluttier than yours."},
+      {name: 'hehe.jpg', url: '/mirror.png', type: "IMAGE"},
+      {name: 'hehe1.jpg', url: '/abs.png', type: "IMAGE"}
+    ]
+  }
 ];
 
 export default function NeuralCore() {
