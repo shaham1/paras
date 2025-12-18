@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 const NAV_LINKS = [
-  { name: 'NEURAL_ARCHIVE', path: '/dashboard/vault', icon: '📁' },
-  { name: 'SIGNAL_WALK', path: '/dashboard/minigame', icon: '🎮' },
-  { name: 'RECOVERED_WISHES', path: '/dashboard/messages', icon: '✉️' },
-  { name: 'TERMINATE', path: '/dashboard/logout', icon: '🚫' },
+  { name: 'NEURAL_ARCHIVE', path: '/vault', },
+  { name: 'SIGNAL_WALK', path: '/minigame', },
+  { name: 'RECOVERED_WISHES', path: '/dashboard/messages', },
+  { name: 'TERMINATE', path: '/matrix', },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
