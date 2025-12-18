@@ -41,7 +41,7 @@ export default function Dashboard() {
 
       {/* BACKGROUND */}
       <div className="absolute inset-0 z-0">
-        <FloatingLines colors={['#ff007f', '#7000ff']} />
+        <FloatingLines/>
         <div className="absolute inset-0 bg-black/80" />
       </div>
 

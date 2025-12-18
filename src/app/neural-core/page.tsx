@@ -43,7 +43,7 @@ export default function NeuralCore() {
       
       {/* BACKGROUND EFFECTS */}
       <div className="absolute inset-0 z-0">
-        <FloatingLines colors={['#330066', '#000000']} />
+        <FloatingLines/>
         <div className="absolute inset-0 bg-black/90 pointer-events-none" />
       </div>
 
