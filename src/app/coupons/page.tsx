@@ -108,7 +108,7 @@ export default function CouponsPage() {
             >
               <p className="text-pink-500 font-mono text-xs animate-pulse tracking-widest uppercase">Selection Confirmed // Archive Updated</p>
               <Button 
-                onClick={() => window.location.href = '/archive'}
+                onClick={() => window.location.href = '/dashboard/messages'}
                 className="bg-transparent border border-white/20 hover:border-white text-white rounded-full px-12 py-6 font-mono text-xs tracking-widest transition-all"
               >
                 PROCEED TO MEMORY_VAULT

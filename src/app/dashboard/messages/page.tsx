@@ -1,76 +1,117 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import FloatingLines from '@/components/FloatingLines';
-import Heartbeat from '@/components/Heartbeat';
-import { prisma } from "@/lib/prisma";
+"use client";
 
-// This makes the page fetch fresh data on every visit instead of caching a static version
-export const revalidate = 0;
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import { getMessages } from '@/app/actions/getMessages';
 
-export default async function MessageStream() {
-  // 1. FETCH DATA DIRECTLY FROM NEON
-  const messages = await prisma.transmission.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
+export default function MessagesPage() {
+  const [mounted, setMounted] = useState(false);
+  const [messages, setMessages] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setMounted(true);
+    
+    // FETCH LIVE DATA FROM NEON
+    const fetchSignals = async () => {
+      const data = await getMessages();
+      setMessages(data);
+      setIsLoading(false);
+    };
+
+    fetchSignals();
+  }, []);
+
+  if (!mounted) return <div className="min-h-screen bg-[#030008]" />;
 
   return (
-    <main className="relative min-h-screen bg-[#030008] text-white overflow-x-hidden">
-      {/* BACKGROUND LAYER */}
-      <div className="fixed inset-0 z-0">
-        <FloatingLines/>
-        <div className="absolute inset-0 bg-black/80" />
+    <main className="relative min-h-screen bg-[#030008] text-white overflow-hidden p-6 md:p-12 flex flex-col">
+      
+      {/* BACKGROUND EFFECTS */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.2)_50%)] bg-[length:100%_4px]" />
       </div>
 
-      {/* TOP HUD */}
-      <nav className="fixed top-0 w-full z-50 p-8 flex justify-between items-center backdrop-blur-md border-b border-white/5">
-        <div className="font-mono text-[10px] tracking-[0.5em] text-pink-500">
-          ARCHIVE // COMMUNICATIONS_LOG
-        </div>
-        <div className="font-mono text-[10px] text-gray-500">
-          TOTAL_TRANSMISSIONS: {messages.length}
-        </div>
-      </nav>
-
-      <div className="relative z-10 pt-40 pb-60 max-w-3xl mx-auto px-6">
-        <div className="absolute left-1/2 -translate-x-1/2 top-40 bottom-40 w-px bg-gradient-to-b from-pink-500 via-purple-500 to-transparent opacity-20" />
-
-        <div className="space-y-64">
-          {messages.length > 0 ? (
-            messages.map((m) => (
-              <div key={m.id} className="relative">
-                <div className="flex flex-col items-center mb-8">
-                  <div className="w-2 h-2 rounded-full bg-pink-500 mb-4 shadow-[0_0_15px_#ff007f]" />
-                  <span className="font-mono text-[10px] tracking-[0.3em] text-pink-500 uppercase">
-                    INCOMING_SIGNAL
-                  </span>
-                  <h2 className="text-2xl font-black italic uppercase mt-2 tracking-tighter">
-                    {m.sender}
-                  </h2>
-                </div>
-
-                <div className="bg-white/5 border border-white/10 backdrop-blur-3xl p-12 rounded-[3rem] text-center group hover:border-pink-500/50 transition-colors duration-500">
-                  <p className="text-3xl font-light italic leading-relaxed text-gray-200 group-hover:text-white transition-colors">
-                    "{m.message}"
-                  </p>
-                </div>
-                
-                <div className="text-center mt-4 opacity-20 font-mono text-[8px] tracking-widest uppercase">
-                  Log_Ref: {m.id.substring(0, 8)} // {m.createdAt.toLocaleDateString()}
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="text-center py-40 opacity-30 italic font-light">
-              No transmissions intercepted yet. The archive is silent...
+      <div className="relative z-10 flex-grow flex flex-col max-w-4xl mx-auto w-full">
+        
+        {/* HEADER */}
+        <header className="mb-12 border-b border-pink-500/20 pb-6">
+          <div className="flex justify-between items-end">
+            <div>
+              <p className="font-mono text-[10px] text-pink-500 tracking-[0.5em] uppercase">Intercepted_Signals</p>
+              <h1 className="text-4xl font-black italic tracking-tighter uppercase text-glow">Messages</h1>
             </div>
-          )}
-        </div>
-      </div>
+            <div className="text-right font-mono text-[8px] text-gray-600 uppercase">
+              Frequency: 107.0 MHz<br />
+              Status: {isLoading ? 'SCANNING...' : 'LOCKED'}
+            </div>
+          </div>
+        </header>
 
-      <div className="fixed bottom-0 w-full z-50 bg-gradient-to-t from-black to-transparent pt-20">
-        <Heartbeat />
+        {/* MESSAGE STREAM */}
+        <section className="flex-grow space-y-6">
+          {isLoading ? (
+            <div className="flex items-center justify-center h-40">
+              <div className="font-mono text-pink-500 animate-pulse tracking-[0.3em]">DECRYPTING_TRANSMISSIONS...</div>
+            </div>
+          ) : (
+            <AnimatePresence>
+              {messages.length > 0 ? (
+                messages.map((msg, i) => (
+                  <motion.div
+                    key={msg.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.2 }}
+                    className="group relative p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:border-pink-500/30 transition-all backdrop-blur-md"
+                  >
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="font-mono text-[10px] text-pink-500 font-bold tracking-widest uppercase">
+                        FROM: {msg.sender || "ANONYMOUS"}
+                      </span>
+                      <span className="text-[8px] text-gray-700 font-mono italic">
+                        {new Date(msg.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <p className="text-lg font-light italic text-gray-200 leading-relaxed">
+                      "{msg.message}"
+                    </p>
+                    <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-white/10 rounded-tr-2xl group-hover:border-pink-500/40 transition-colors" />
+                  </motion.div>
+                ))
+              ) : (
+                <div className="text-center p-20 border border-dashed border-white/10 rounded-3xl">
+                  <p className="font-mono text-gray-600 uppercase tracking-widest text-xs">No signals intercepted yet.</p>
+                </div>
+              )}
+            </AnimatePresence>
+          )}
+        </section>
+
+        {/* FOOTER: TERMINATE SESSION BUTTON */}
+        <footer className="mt-20 py-10 flex flex-col items-center gap-6 border-t border-white/5">
+          <Link href="/matrix">
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(236,72,153,0.15)" }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative flex flex-col items-center gap-2 px-12 py-5 bg-black border border-pink-500/40 rounded-full transition-all overflow-hidden"
+            >
+              <span className="relative z-10 text-[11px] font-mono tracking-[0.5em] text-pink-500 group-hover:text-white transition-colors">
+                TERMINATE_SECURE_SESSION
+              </span>
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-b from-transparent via-pink-500/10 to-transparent h-1/2 w-full"
+                animate={{ translateY: ['-100%', '200%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
+            </motion.button>
+          </Link>
+          <div className="text-[8px] font-mono text-gray-700 uppercase tracking-widest pt-4">
+            Auth: PARAS // Node: PDX_WEST // Uptime: 19_YEARS
+          </div>
+        </footer>
       </div>
     </main>
   );

@@ -81,10 +81,10 @@ export default function Dashboard() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { label: 'Signals', href: '/dashboard/messages', id: '01' },
-              { label: 'Timeline', href: '/matrix', id: '02' },
-              { label: 'Vault', href: '/coupons', id: '03' },
-              { label: 'Reality', href: '/neural-core', id: '04' }
+              { label: 'Reality', href: '/neural-core', id: '01' },
+              { label: 'Vault', href: '/coupons', id: '02' },
+              { label: 'Signals', href: '/dashboard/messages', id: '03' },
+              { label: 'Goodbye', href: '/matrix', id: '05' }
             ].map((item) => (
               <Link key={item.id} href={item.href} className="border border-white/5 bg-white/[0.03] p-6 rounded-2xl hover:border-pink-500/40 transition-all group backdrop-blur-md">
                 <p className="text-[8px] font-mono text-gray-600 mb-2 italic">ACCESS_PT_{item.id}</p>
