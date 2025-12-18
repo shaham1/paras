@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FloatingLines from '@/components/FloatingLines';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 // --- CONFIGURATION: ADD YOUR FILENAMES HERE ---
 const DIRECTORIES = [
@@ -21,6 +22,12 @@ const DIRECTORIES = [
     name: 'intellectual_property', 
     files: [
       { name: 'inside_joke_01.jpg', url: '/archive/joke1.jpg', type: 'IMAGE' },
+      { name: 'oh.pdf', url: '/archieve/whateven.jpeg', type: 'TEXT', content: 'i asked for good pictures btw.' },
+      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
+      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
+      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
+      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
+      { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' },
       { name: 'the_manifesto.pdf', url: '', type: 'TEXT', content: 'Pure Chaos is the only fuel we need.' }
     ] 
   },

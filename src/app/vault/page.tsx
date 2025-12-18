@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import Threads from '@/components/Threads';
 const WRAPPED_SLIDES = [
   {
     id: "intro",
