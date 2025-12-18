@@ -7,22 +7,35 @@ import FaultyLetters from '@/components/FaultyLetters';
 
 const QUIZ_STEPS = [
   {
-    id: "VERIF_01",
-    question: "PROTOCOL 01: IDENTITY_CHECK. What is the exact name of the cafe where the 'Coffee Incident' occurred?",
-    answer: "STARBUCKS", 
-    hint: "Hint: It's the one with the shaky table."
+    level: "01",
+    code: "TRANSPORT_SYNC",
+    question: "Mom decides to switch the van route because 'She' is doing it too. Who was the original catalyst for this orbit?",
+    options: [
+      { text: "A Random Driver", correct: false },
+      { text: "The Laiba Factor", correct: true },
+      { text: "A Navigation Glitch", correct: false }
+    ],
+    answer: "Laiba",
+    hint: "Think back to the van route change in Grade 11."
   },
   {
-    id: "VERIF_02",
-    question: "PROTOCOL 02: TEMPORAL_SYNC. In which year did we officially hit the 'Inseparable' threshold?",
-    answer: "2022",
-    hint: "Hint: The year of the 1000km road trip."
+    level: "02",
+    code: "RANT_PROCESSING",
+    question: "Despite 'Taking Sides' initially, Paras spent hours every night listening to the Architect rant. Who was this architect:",
+    options: [
+      { text: "Permanent Ear Damage", correct: false },
+      { text: "The foundation of real friendship", correct: true },
+      { text: "System Overheat", correct: false }
+    ],
+    answer: "Shaham",
+    hint: "It wasn't about the ear damage, though that was a risk."
   },
   {
-    id: "VERIF_03",
-    question: "PROTOCOL 03: CHARACTER_CORE. Which of these is the subject's primary fuel: [A] Matcha [B] Espresso [C] Pure Chaos?",
-    answer: "C",
-    hint: "Hint: Option C is statistically most likely."
+    level: "03",
+    code: "HEHEHE",
+    question: "HAPPY BIRTHDAY PARAS, I Love You (say it back)",
+    answer: "i love you too",
+    hint: "Distance is just a number for 107,000 KM/H signals."
   }
 ];
 
