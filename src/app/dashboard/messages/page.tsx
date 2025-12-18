@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { getMessages } from '@/app/actions/getMessages';
+import FloatingLines from '@/components/FloatingLines';
 
 export default function MessagesPage() {
   const [mounted, setMounted] = useState(false);
@@ -27,11 +28,11 @@ export default function MessagesPage() {
 
   return (
     <main className="relative min-h-screen bg-[#030008] text-white overflow-hidden p-6 md:p-12 flex flex-col">
-      
       {/* BACKGROUND EFFECTS */}
       <div className="absolute inset-0 z-0">
+        <FloatingLines/>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(236,72,153,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.2)_50%)] bg-[length:100%_4px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px]" />
       </div>
 
       <div className="relative z-10 flex-grow flex flex-col max-w-4xl mx-auto w-full">

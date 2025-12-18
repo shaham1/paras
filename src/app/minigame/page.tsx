@@ -1,136 +1,136 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-import Image from 'next/image';
+import React, { Suspense, useState, useRef, useMemo } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Stars, PerspectiveCamera, Float, Sparkles, Box, Icosahedron, Text } from '@react-three/drei';
+import * as THREE from 'three';
 
-export default function VanAGoGo() {
-  const [isLaunched, setIsLaunched] = useState(false);
-  const [score, setScore] = useState(0);
-  const [targets, setTargets] = useState([
-    { id: 1, label: 'DRAMA', x: 70, y: 50, hit: false },
-    { id: 2, label: 'LAIBA_ARGUMENT', x: 85, y: 30, hit: false },
-    { id: 3, label: 'HOMEWORK', x: 75, y: 10, hit: false },
-    { id: 4, label: 'COLLEGE_STRESS', x: 80, y: 70, hit: false },
-  ]);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  // Visual "Sling" effect
-  const rotate = useTransform(x, [-100, 100], [-30, 30]);
-  const opacity = useTransform(y, [0, -100], [1, 0.5]);
-
-  const handleLaunch = () => {
-    // Check for collisions with targets based on release position
-    const finalX = x.get();
-    const finalY = y.get();
-
-    setTargets(prev => prev.map(t => {
-      // Very basic "hit" logic based on inverse trajectory
-      const isHit = Math.abs(finalX + (t.x - 50) * 2) < 20;
-      if (isHit && !t.hit) setScore(s => s + 100);
-      return isHit ? { ...t, hit: true } : t;
-    }));
-
-    setIsLaunched(true);
-    setTimeout(() => {
-      setIsLaunched(false);
-      x.set(0);
-      y.set(0);
-    }, 1000);
-  };
+// 🚐 THE VAN WITH COLLISION LOGIC
+function Van({ position, vanRef }: any) {
+  useFrame(({ mouse, viewport }) => {
+    const x = (mouse.x * viewport.width) / 2;
+    const y = (mouse.y * viewport.height) / 2;
+    vanRef.current.position.x = THREE.MathUtils.lerp(vanRef.current.position.x, x, 0.1);
+    vanRef.current.position.y = THREE.MathUtils.lerp(vanRef.current.position.y, y, 0.1);
+    vanRef.current.rotation.z = -mouse.x * 0.4;
+  });
 
   return (
-    <main className="h-screen w-full bg-[#05000a] text-white overflow-hidden flex flex-col items-center justify-center p-4">
+    <mesh ref={vanRef}>
+      <boxGeometry args={[1, 0.6, 2]} />
+      <meshStandardMaterial color="#ff007f" emissive="#ff007f" emissiveIntensity={0.5} />
+      <pointLight position={[0, 0, 1]} distance={5} intensity={2} color="white" />
+    </mesh>
+  );
+}
+
+// ⚠️ THE OBSTACLE
+function Obstacle({ index, vanRef, onCrash }: any) {
+  const mesh = useRef<THREE.Mesh>(null!);
+  
+  // Randomize starting positions
+  const x = useMemo(() => (Math.random() - 0.5) * 10, []);
+  const y = useMemo(() => (Math.random() - 0.5) * 10, []);
+  const z = useMemo(() => -20 - index * 10, [index]);
+
+  useFrame((state, delta) => {
+    if (!mesh.current) return;
+
+    // Move obstacle toward the camera
+    mesh.current.position.z += 0.25;
+
+    // Reset if it goes behind player
+    if (mesh.current.position.z > 5) {
+      mesh.current.position.z = -100;
+      mesh.current.position.x = (Math.random() - 0.5) * 10;
+      mesh.current.position.y = (Math.random() - 0.5) * 10;
+    }
+
+    // 💥 REAL-TIME COLLISION DETECTION (Distance Check)
+    const distance = mesh.current.position.distanceTo(vanRef.current.position);
+    if (distance < 1.2) {
+      onCrash();
+    }
+  });
+
+  return (
+    <mesh ref={mesh} position={[x, y, z]}>
+      <icosahedronGeometry args={[0.5, 0]} />
+      <meshStandardMaterial color="cyan" wireframe />
+    </mesh>
+  );
+}
+
+export default function Vantastrophe() {
+  const [gameState, setGameState] = useState<'START' | 'PLAYING' | 'CRASHED'>('START');
+  const [score, setScore] = useState(0);
+  const vanRef = useRef<THREE.Mesh>(null!);
+
+  const handleCrash = () => {
+    if (gameState === 'PLAYING') setGameState('CRASHED');
+  };
+
+  useFrame(() => {
+    if (gameState === 'PLAYING') setScore(s => s + 1);
+  });
+
+  return (
+    <div className="w-full h-screen bg-[#05000a] relative overflow-hidden font-mono">
       
-      {/* HUD */}
-      <div className="w-full max-w-4xl flex justify-between items-center mb-8 border-b border-pink-500/20 pb-4 font-mono">
-        <div>
-          <h1 className="text-2xl font-black italic text-pink-500 uppercase tracking-tighter">Van_A_Go_Go</h1>
-          <p className="text-[10px] text-gray-500 uppercase">Velocity: 107,000 KM/H</p>
-        </div>
-        <div className="text-right">
-          <div className="text-3xl font-black italic text-glow">{score}</div>
-          <p className="text-[10px] text-gray-500 uppercase">Stress_Neutralized</p>
-        </div>
-      </div>
-
-      <div className="relative w-full max-w-5xl h-[70vh] bg-white/[0.02] border border-white/10 rounded-[4rem] overflow-hidden backdrop-blur-md">
-        
-        {/* THE VAN (Launch Pad) */}
-        <div className="absolute bottom-10 left-10 w-40 h-24 bg-pink-500/10 border-2 border-dashed border-pink-500/30 rounded-2xl flex items-center justify-center">
-          <span className="text-[10px] font-black text-pink-500/40 uppercase tracking-widest">Launch_Sector</span>
-        </div>
-
-        {/* TARGETS (Obstacles) */}
-        {targets.map(t => (
-          <motion.div
-            key={t.id}
-            initial={false}
-            animate={{ 
-              scale: t.hit ? 0 : 1,
-              rotate: t.hit ? 180 : 0,
-              opacity: t.hit ? 0 : 1
-            }}
-            className="absolute flex flex-col items-center"
-            style={{ left: `${t.x}%`, top: `${t.y}%` }}
-          >
-            <div className="relative w-20 h-20">
-              <Image 
-                src="/archive/paras_grumpy.png" 
-                alt="Obstacle" 
-                fill 
-                className="object-contain grayscale brightness-50" 
-              />
-            </div>
-            <span className="mt-2 text-[8px] font-mono bg-red-500 text-black px-1 font-black uppercase">
-              {t.label}
-            </span>
-          </motion.div>
-        ))}
-
-        {/* PROJECTILE (Paras Head) */}
-        {!isLaunched && (
-          <motion.div
-            drag
-            dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
-            onDragEnd={handleLaunch}
-            style={{ x, y, rotate, opacity }}
-            className="absolute bottom-12 left-16 z-50 w-28 h-28 cursor-grab active:cursor-grabbing"
-          >
-            <div className="relative w-full h-full">
-              <Image 
-                src="/archive/paras_happy.png" 
-                alt="Projectile" 
-                fill 
-                className="object-contain drop-shadow-[0_0_20px_#ff007f]" 
-              />
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-black text-[8px] font-black px-2 py-0.5 rounded-full uppercase shadow-lg">
-                Fling_Me
-              </div>
-            </div>
-          </motion.div>
+      {/* UI OVERLAY */}
+      <div className="absolute inset-0 z-50 flex flex-col items-center justify-center pointer-events-none text-white">
+        {gameState === 'START' && (
+          <div className="text-center pointer-events-auto bg-black/80 p-10 border border-pink-500/20">
+            <h1 className="text-4xl font-black italic text-pink-500 mb-4">THE_VAN_PROTOCOL</h1>
+            <p className="text-[10px] tracking-widest text-gray-400 mb-8">MISSION: ESCAPE GRADE 11 // SPEED: 107,000 KM/H</p>
+            <button 
+              onClick={() => setGameState('PLAYING')}
+              className="px-10 py-4 bg-pink-500 text-black font-black uppercase hover:bg-white transition-all"
+            >
+              Ignition
+            </button>
+          </div>
         )}
 
-        {/* RESET BUTTON IF ALL HIT */}
-        {targets.every(t => t.hit) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-md z-[60]">
-             <h2 className="text-4xl font-black italic text-pink-500 mb-6 uppercase">Crisis_Averted</h2>
-             <button 
-              onClick={() => setTargets(prev => prev.map(t => ({ ...t, hit: false })))}
-              className="px-8 py-3 bg-pink-500 text-black font-black uppercase hover:scale-105 transition-all"
-             >
-               Re-Sync_Chaos
-             </button>
+        {gameState === 'CRASHED' && (
+          <div className="text-center pointer-events-auto bg-red-950/90 p-10 border border-red-500">
+            <h1 className="text-4xl font-black italic text-red-500 mb-4">CRITICAL_FAILURE</h1>
+            <p className="text-xs mb-8 uppercase">The Van didn't make it. Final Velocity: {score} KM</p>
+            <button 
+              onClick={() => { setScore(0); setGameState('PLAYING'); }}
+              className="px-10 py-4 bg-red-500 text-white font-black uppercase hover:bg-white hover:text-red-500 transition-all"
+            >
+              Re-Spawn
+            </button>
+          </div>
+        )}
+
+        {gameState === 'PLAYING' && (
+          <div className="absolute top-10 left-10 text-pink-500 flex flex-col items-start">
+             <span className="text-[10px] opacity-50">DISTANCE_TRAVERSED</span>
+             <span className="text-3xl font-black italic">{score} KM</span>
+             <span className="mt-4 text-[10px] bg-pink-500 text-black px-2 py-1 font-black">107,000 KM/H</span>
           </div>
         )}
       </div>
 
-      <div className="mt-8 font-mono text-[9px] text-gray-600 uppercase tracking-[0.4em] flex gap-12">
-        <span>[Drag Paras back and release to launch]</span>
-        <button onClick={() => window.history.back()} className="hover:text-white underline transition-colors">Abort_Simulator</button>
-      </div>
-    </main>
+      <Canvas>
+        <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={75} />
+        <Suspense fallback={null}>
+          <color attach="background" args={['#05000a']} />
+          <Stars radius={100} depth={50} count={5000} factor={4} fade />
+          <ambientLight intensity={0.5} />
+          
+          <Van vanRef={vanRef} />
+
+          {gameState === 'PLAYING' && Array.from({ length: 15 }).map((_, i) => (
+            <Obstacle key={i} index={i} vanRef={vanRef} onCrash={handleCrash} />
+          ))}
+
+          {/* Speed Lines */}
+          <gridHelper args={[100, 20, "#ff007f", "#222"]} rotation={[Math.PI / 2, 0, 0]} />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }

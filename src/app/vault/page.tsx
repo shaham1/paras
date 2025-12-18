@@ -28,7 +28,7 @@ const WRAPPED_SLIDES = [
     subtitle: "Side A vs Side B",
     image: "/window.svg", // Placeholder
     color: "from-red-900/20 to-black",
-    text: "Lines were drawn. You chose the 'other' side. But then, the signals started changing."
+    text: "Lines were drawn. I was still better tho frfr. But then, the signals started changing."
   },
   {
     id: "trust",
@@ -36,7 +36,7 @@ const WRAPPED_SLIDES = [
     subtitle: "The Password Handover",
     image: "/globe.svg", // Placeholder
     color: "from-blue-900/20 to-black",
-    text: "You saw the passwords. You saw the vulnerability. You realized I wasn't the 'Bad Guy'."
+    text: "It was her fault not mine (trust) :)."
   },
   {
     id: "rants",
