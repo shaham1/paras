@@ -41,9 +41,9 @@ const WRAPPED_SLIDES = [
     id: "rants",
     title: "THE_RANT_CHANNELS",
     subtitle: "Unlimited Uptime",
-    image: "/file.svg", 
+    image: "/horse.png", 
     color: "from-pink-600/20 to-black",
-    text: "Hours spent on the phone. Late night rants. You became the primary listener."
+    text: "Hours spent on the phone. Late night rants. You became the primary listener, and you also grew an interest in horses!?."
   },
   {
     id: "move",
