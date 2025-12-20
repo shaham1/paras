@@ -41,15 +41,6 @@ const DIRECTORIES = [
       { name: 'okay.jpg', url: '/archive/mesage.png', type: 'IMAGE' },
       { name: 'hard.jpg', url: '/archive/hard.png', type: 'IMAGE' }
     ] 
-  },
-  {
-    id: 'DIR_04',
-    name: 'subtle reminder',
-    files: [
-      {name: 'reminder.txt', url: '', type: "TEXT", content: "Subtle reminders that my waist will always be sluttier than yours."},
-      {name: 'hehe.jpg', url: '/mirror.png', type: "IMAGE"},
-      {name: 'hehe1.jpg', url: '/abs.png', type: "IMAGE"}
-    ]
   }
 ];
 
